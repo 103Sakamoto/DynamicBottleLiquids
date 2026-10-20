@@ -1,3 +1,9 @@
+# 1.0.0 (unreleased corrections)
+
+- Restored renderer initialization accidentally removed alongside a profiling call during release cleanup. Initialization completes before the draw hook is enabled, and success is logged.
+- Removed the 26 `Meshes/props/nuka world/` meshes from the main package. The Nuka Project patch retains its own meshes.
+- No changes to shader equations, frozen settings, or mesh contents.
+
 # 1.0.0
 
 - Consolidated the accepted 0.13.4.37 rendering behavior and current effective appearance settings.

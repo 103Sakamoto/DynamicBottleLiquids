@@ -341,10 +341,12 @@ void EnsureRenderer(){
     attempted=true;
     auto* device=reinterpret_cast<ID3D11Device*>(data->device);auto* ctx=reinterpret_cast<ID3D11DeviceContext*>(data->context);
     if(ctx->GetType()!=D3D11_DEVICE_CONTEXT_IMMEDIATE)throw std::runtime_error("Expected immediate context");
+    renderer.Initialize(device,root/"shaders",2952);
     auto** table=*reinterpret_cast<void***>(ctx);
     if(MH_CreateHook(table[12],reinterpret_cast<void*>(&Draw),reinterpret_cast<void**>(&originalDraw))!=MH_OK)throw std::runtime_error("Cannot detour DrawIndexed");
     hookedContext=ctx;
     if(MH_EnableHook(table[12])!=MH_OK){hookedContext=nullptr;MH_RemoveHook(table[12]);throw std::runtime_error("Cannot enable DrawIndexed hook");}
+    REX::INFO("D3D11 renderer initialized; glass replacement is ready.");
 
 }
 

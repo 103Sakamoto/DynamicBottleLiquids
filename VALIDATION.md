@@ -28,3 +28,7 @@ Address Library mappings were resolved against the provided executable versions.
 The inspected native Effect refraction branches use pass type 5 and the same utility technique bit construction. The pass geometry pointer and type fields are consistent with the CommonLib definitions. Runtime-specific render-target mapping uses CommonLib accessors, including OG versus NG/AE offsets. The DLL exports both the legacy query and version metadata; standalone query checks accept exactly the three listed versions and reject VR, 1.10.980 and the editor.
 
 **Remaining:** live F4SE loading, hook execution and visual verification of this final 1.0 build in each game runtime. Offscreen GPU tests and successful version queries do not establish complete OG/NG game compatibility. The accepted pre-release was game-tested on 1.11.240, but this release cleanup and OG/NG enablement still need user testing. No new runtime GPU performance claim is made from the offscreen correctness tests.
+
+## Unreleased 1.0.0 startup correction
+
+The 1.0.0 offscreen harness initialized the renderer directly and therefore missed the absent initialization call in the game hook. The game entry path now restores the accepted initialization call before installing/enabling DrawIndexed. Existing offscreen results do not verify live F4SE hook execution; a new game run is required. The main package excludes the 26 Nuka Project-only meshes under `Meshes/props/nuka world/`, leaving 87 unchanged meshes.
