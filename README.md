@@ -18,9 +18,9 @@ The native optical path retains full-resolution rendering, foreground depth guar
 - Install the main archive through your mod manager and launch through F4SE. Replace the old DynamicBottleLiquids installation rather than merging development files into it.
 - If using The Nuka Project or The Vim Project, install the corresponding optional patch after the main archive and after the original mod. The patch does not replace its parent mod.
 
-The approved 0.13.4.1 Nuka/Vim patch meshes remain compatible and are unchanged in the 1.0 patch packages. Existing tuning JSON files are ignored. Supported meshes continue to use their existing texture paths.
+The approved 0.13.4.1 Nuka/Vim patch meshes remain compatible and are unchanged in the 1.0 patch packages. The main archive excludes `Meshes/props/nuka world/`; those meshes belong to the Nuka Project patch. Existing tuning JSON files are ignored. Supported meshes continue to use their existing texture paths.
 
-**Validation status:** OG/NG hook locations and native pass construction were inspected in the supplied executables. Offscreen D3D11 tests pass on hardware and WARP. Live in-game verification of the final 1.0 build, particularly OG and NG, is still required; executable inspection is not a substitute for it. Fallout 4 VR and other executable versions are not enabled.
+**Validation status:** OG/NG hook locations and native pass construction were inspected in the supplied executables. Offscreen D3D11 tests pass on hardware and WARP. On 20 October 2026, the tester confirmed that corrected 1.0.0 works in their current setup (the latest supplied log identifies Fallout 4 1.11.240). Live OG and NG testing remains outstanding; executable inspection is not a substitute for it. Fallout 4 VR and other executable versions are not enabled.
 
 ## Troubleshooting
 
