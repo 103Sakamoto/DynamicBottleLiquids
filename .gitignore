@@ -1,0 +1,17 @@
+.deps/
+.xmake/
+build/
+*.dll
+*.exe
+*.pdb
+*.obj
+*.lib
+*.exp
+*.cso
+*.zip
+*.7z
+*.nif
+*.dds
+*.bgem
+*.bgsm
+*.log
