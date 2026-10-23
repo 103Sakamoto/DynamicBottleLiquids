@@ -4,6 +4,10 @@ Dynamic liquid, sloshing, bubbles, surface foam and native scene refraction for 
 
 **[Download and install from Nexus Mods](https://www.nexusmods.com/fallout4/mods/110181).** DLLs, compiled shaders, meshes and installable archives are not hosted on GitHub.
 
+## DBL patcher 0.9
+
+The standalone bottle authoring tool has its own [source](tools/author_tool/README.md) and [Windows build instructions](tools/author_tool/BUILD-0.9.md). These include the recorded dependency versions, PyInstaller packaging definition, and source/archive hashes for review. The `patcher-v0.9` branch preserves this patcher source snapshot. This is separate from the game plugin version below.
+
 ## Version 1.1
 
 The 1.1 installer brings together desktop and VR builds, vanilla bottle replacers and additional drink patches. It includes material-based appearance overrides, carbonation and shaking bubbles, surface foam for carbonated drinks, and the revised wet film inside the glass.
@@ -70,3 +74,4 @@ When reporting a problem, include the full plugin log, game/F4SE versions, relev
 Project code is licensed under the included [GNU GPL v3 license](LICENSE). Game/mod assets in separately distributed install packages retain their original rights; this license does not relicense those assets.
 
 This README describes the 1.1 package. The repository source and [build notes](BUILD.md) currently describe the earlier published source revision; the separate 1.1 source archive accompanies the prepared release and has not yet been synchronized here. See the existing [third-party notices](THIRD_PARTY.md) for that revision. The 1.1 source package additionally retains the VR contributor and dependency notices.
+
