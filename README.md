@@ -75,3 +75,7 @@ Project code is licensed under the included [GNU GPL v3 license](LICENSE). Game/
 
 This README describes the 1.1 package. The repository source and [build notes](BUILD.md) currently describe the earlier published source revision; the separate 1.1 source archive accompanies the prepared release and has not yet been synchronized here. See the existing [third-party notices](THIRD_PARTY.md) for that revision. The 1.1 source package additionally retains the VR contributor and dependency notices.
 
+
+## DBL Patcher 1.0
+
+The standalone patcher fixes saving desktop-picked colors. [Download 1.0](https://github.com/103Sakamoto/DynamicBottleLiquids/releases/tag/patcher-v1.0), see the [application guide](tools/author_tool/README.md), or [build from source](tools/author_tool/BUILD-1.0.md). Patcher versioning is separate from the runtime mod.

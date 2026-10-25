@@ -11,7 +11,7 @@ from author_tool.appearance_ui import AppearanceDialog,GroupsDialog
 from author_tool.qt_app import AuthorWindow
 from author_tool.screen_color import pixel_color,ScreenOverlay,DesktopSampler
 from author_tool.color_ui import ColorDialog
-from PySide6.QtCore import QPoint,QRect,Qt
+from PySide6.QtCore import QPoint,QRect,Qt,QTimer
 from PySide6.QtGui import QImage,QColor
 from PySide6.QtTest import QTest
 
@@ -120,6 +120,30 @@ class DocumentWorkflowTests(unittest.TestCase):
 class DesktopColorTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):cls.app=application()
+    def test_desktop_sample_is_committed_after_palette_is_restored(self):
+        project=core.new_project()
+        project['appearance']['profiles']={'one':{'group':None,'overrides':{}}}
+        appearance=AppearanceDialog(project,scope=('bottle','one'))
+        dialogs=[]
+        def sample():
+            dialog=next(w for w in self.app.topLevelWidgets() if isinstance(w,ColorDialog) and w.parent() is appearance and w.isVisible())
+            dialogs.append(dialog)
+            dialog.sampler.start()
+            QTimer.singleShot(10,lambda:dialog.sampler.choose(QColor('#2468AC')))
+            QTimer.singleShot(30,lambda:QTest.mouseClick(dialog.accept_button,Qt.MouseButton.LeftButton))
+        try:
+            appearance.show()
+            QTimer.singleShot(0,sample)
+            appearance.choose_color('liquid_color')
+            for _ in range(100):
+                if appearance.values['liquid_color']=='#2468AC':break
+                QTest.qWait(10)
+            self.assertEqual(appearance.values['liquid_color'],'#2468AC')
+        finally:
+            from shiboken6 import isValid
+            for dialog in dialogs:
+                if isValid(dialog):dialog.reject()
+            appearance.reject()
     def test_scaled_screen_and_negative_desktop_coordinates(self):
         image=QImage(400,200,QImage.Format.Format_RGB32);image.fill(QColor('#112233'));image.setPixelColor(200,100,QColor('#ABCDEF'))
         self.assertEqual(pixel_color(image,QRect(-200,40,200,100),QPoint(-100,90)).name(),'#abcdef')

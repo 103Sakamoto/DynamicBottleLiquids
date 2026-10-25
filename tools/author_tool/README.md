@@ -1,4 +1,4 @@
-# DBL patcher 0.9
+# DBL patcher 1.0
 
 Open a Fallout 4 NIF, select the liquid volume or bottle wall, calculate a cavity,
 inspect the overlay, assign appearance groups, and export a patch ZIP. Processing
@@ -204,3 +204,7 @@ Version 0.9 embeds the approved bottle icon in the Windows EXE and uses it for a
 
 The application stays in one-folder mode: no full-bundle extraction occurs at launch. Python reads timezone resources directly from _internal/author-resources.zip through standard zipimport/importlib.resources. Qt resources already embedded in the Python archive remain there. Native DLLs, fonts and resources requiring real file paths remain loose. Unused Qt PDF-image and QML virtual-keyboard components, Qt translation catalogs (the UI is English), and Matplotlib example data are excluded. Normal Windows keyboard input is retained. Third-party notices are preserved in licenses.zip; open this archive to read them.
 
+
+## Version 1.0
+
+Fixes saving colors sampled from the desktop: the palette now keeps its acceptance handler when temporarily hidden for sampling. Manual color selection and Cancel retain their existing behavior.

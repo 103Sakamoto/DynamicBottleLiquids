@@ -144,7 +144,11 @@ class AppearanceDialog(QDialog):
         self.project['appearance']['profiles'][self.current_scope[1]]['group']=self.membership.currentData();self.load_values()
     def choose_color(self,key):
         dialog=ColorDialog(self.values[key],self)
-        if dialog.exec()==QDialog.DialogCode.Accepted:self.set_value(key,dialog.color.name().upper())
+        # Desktop sampling hides this dialog, which terminates QDialog.exec().
+        # Keep acceptance connected across that hide/show cycle instead.
+        dialog.accepted.connect(lambda:self.set_value(key,dialog.color.name().upper()))
+        dialog.finished.connect(dialog.deleteLater)
+        dialog.open()
 
 class GroupsDialog(QDialog):
     def __init__(self,project,parent=None,names=None):

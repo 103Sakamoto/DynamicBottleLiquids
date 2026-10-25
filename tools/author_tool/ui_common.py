@@ -9,7 +9,7 @@ from PySide6.QtGui import QFont, QColor, QPalette, QIcon
 from PySide6.QtWidgets import QApplication, QFrame, QVBoxLayout, QDoubleSpinBox, QToolButton, QDialog, QHBoxLayout, QWidget, QLabel, QPushButton
 from qfluentwidgets import BodyLabel, setTheme, Theme, setThemeColor
 
-VERSION='0.9'
+VERSION='1.0'
 
 def application():
     existing=QApplication.instance()

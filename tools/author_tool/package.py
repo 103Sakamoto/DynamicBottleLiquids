@@ -19,7 +19,7 @@ def main():
     if not (APP / "DBL-patcher.exe").is_file():
         raise SystemExit("Build the application first.")
     report = ROOT / "build/author-tool-packaged-smoke.json"
-    if not json.loads(report.read_text())["passed"] or json.loads(report.read_text()).get('version') != '0.9':
+    if not json.loads(report.read_text())["passed"] or json.loads(report.read_text()).get('version') != '1.0':
         raise SystemExit("Packaged smoke test must pass before packaging.")
     shutil.copy2(ROOT / "tools/author_tool/README.md", APP / "README.md")
     shutil.copy2(ROOT / "LICENSE", APP / "LICENSE")
@@ -41,9 +41,9 @@ def main():
         if source.is_file():
             license_archive.write(source, "python-tcl/" + source.relative_to(python_root).as_posix())
     license_archive.close()
-    (APP / "BUILD.json").write_text(json.dumps({"version": "0.9", "python": sys.version,
+    (APP / "BUILD.json").write_text(json.dumps({"version": "1.0", "python": sys.version,
                                                "packages": versions, "in_game_tested": False}, indent=2) + "\n")
-    source_zip = ROOT / "build/DBL-patcher-0.9-source.zip"
+    source_zip = ROOT / "build/DBL-patcher-1.0-source.zip"
     source_files = [ROOT / "LICENSE", ROOT / "tools/nif_mesh.py", ROOT / "tools/nif_document.py",
                     ROOT / "tools/author_tool_entry.py", ROOT / "tests/test_author_tool.py"]
     source_files += [p for p in (ROOT / "tools/author_tool").iterdir() if p.is_file()]
@@ -51,7 +51,7 @@ def main():
     with zipfile.ZipFile(source_zip, "w", zipfile.ZIP_DEFLATED) as archive:
         for path in sorted(source_files):
             archive.write(path, path.relative_to(ROOT).as_posix())
-    output = ROOT / "build/DBL-patcher-0.9-Windows.zip"
+    output = ROOT / "build/DBL-patcher-1.0-Windows.zip"
     with zipfile.ZipFile(output, "w", zipfile.ZIP_DEFLATED) as archive:
         for path in sorted(APP.rglob("*")):
             if path.is_file():
