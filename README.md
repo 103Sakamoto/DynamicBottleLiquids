@@ -15,7 +15,7 @@ Moving liquid, sloshing, carbonation and shaking bubbles, surface foam, wet inne
 - Fixed the **Duplicate tuning mesh** settings-loading error during upgrades, preserving saved settings.
 - Retains the 1.2 compatibility patches, 95% Nuka fill, and saved customization.
 
-The 1.3 desktop package is prepared locally. GitHub's latest published runtime release is currently [1.2](https://github.com/103Sakamoto/DynamicBottleLiquids/releases/tag/v1.2); updating this page does not publish a 1.3 installer or synchronize its source. VR retains the unchanged 1.2 runtime. The new Fusion editor and atmospheric fading are desktop-only.
+**[Download version 1.3](https://github.com/103Sakamoto/DynamicBottleLiquids/releases/tag/v1.3)**. The release includes the full installer, corresponding source, Fusion notices, and checksums. VR retains the unchanged 1.2 runtime. The new Fusion editor and atmospheric fading are desktop-only.
 
 ## Requirements and installation
 
@@ -48,9 +48,9 @@ The **1.3 desktop editor and performance overlay use [Fusion UI](https://github.
 
 DBL registers its appearance editor and passive overlay as Fusion UI clients. DBL supplies the bottle controls and settings; Fusion provides the shared UI/input infrastructure, including cursor and input ownership and the editor's pause behavior. Fusion UI builds on Dear ImGui.
 
-The prepared 1.3 desktop package includes `FusionUI.dll`, `FusionFramework.dll`, and the required UI resources. They are not used by the VR runtime. If another mod provides these shared components, avoid overwriting a newer compatible version with an older copy.
+The 1.3 desktop package includes `FusionUI.dll`, `FusionFramework.dll`, and the required UI resources. They are not used by the VR runtime. If another mod provides these shared components, avoid overwriting a newer compatible version with an older copy.
 
-Fusion UI and Fusion Framework are **GPL-3.0-or-later**, copyright 2026 Bryant-21. Their license texts and font/icon notices are retained in the distribution. The prepared 1.3 source archive includes the source snapshots, dependency provenance, and working-tree patch records used for the build. See [third-party notices](THIRD_PARTY.md) for exact revisions and notice locations. This describes DBL's packaged integration; upstream Fusion's current architecture may differ from the pinned revision.
+Fusion UI and Fusion Framework are **GPL-3.0-or-later**, copyright 2026 Bryant-21. Their license texts and font/icon notices are retained in the distribution. The attached 1.3 source archive includes the source snapshots, dependency provenance, and working-tree patch records used for the build. See [third-party notices](THIRD_PARTY.md) for exact revisions and notice locations. This describes DBL's packaged integration; upstream Fusion's current architecture may differ from the pinned revision.
 
 ## Logging and troubleshooting
 
@@ -78,4 +78,4 @@ The standalone bottle-authoring tool imports supported NIFs, prepares cavity pro
 
 DBL project code uses the included [GNU GPL v3 license](LICENSE). Third-party software and game/mod assets retain their own licenses; DBL's license does not relicense those assets.
 
-The source currently on GitHub main and its [build notes](BUILD.md) describe an earlier runtime revision. The prepared `DynamicBottleLiquids-1.3-Source.zip` contains the corresponding desktop/VR sources, Fusion dependency snapshots, build records, and notices, but has not been published to this repository as part of this documentation update. Do not use the older main-branch source as a claim of source correspondence for 1.3.
+**[Download the corresponding 1.3 source](https://github.com/103Sakamoto/DynamicBottleLiquids/releases/download/v1.3/DynamicBottleLiquids-1.3-Source.zip)** for the desktop/VR sources, Fusion dependency snapshots, build instructions, provenance, and notices. The source currently on GitHub main and its [build notes](BUILD.md) describe an earlier runtime revision. GitHub's automatically generated source ZIP/tarball follows the repository tag; use the explicitly attached `DynamicBottleLiquids-1.3-Source.zip` to reproduce the 1.3 build. See the release's `Fusion-NOTICES.txt` and `SHA256SUMS.txt` for notices and checksums.
