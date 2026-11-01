@@ -1,81 +1,81 @@
 # Dynamic Bottle Liquids
 
-Dynamic liquid, sloshing, bubbles, surface foam and native scene refraction for supported Fallout 4 bottles.
+Moving liquid, sloshing, carbonation and shaking bubbles, surface foam, wet inner glass, and scene refraction for supported Fallout 4 bottles.
 
-**[Download and install from Nexus Mods](https://www.nexusmods.com/fallout4/mods/110181).** DLLs, compiled shaders, meshes and installable archives are not hosted on GitHub.
+**[Download from Nexus Mods](https://www.nexusmods.com/fallout4/mods/110181)** or see the [GitHub releases](https://github.com/103Sakamoto/DynamicBottleLiquids/releases). The runtime mod and standalone DBL Patcher have separate version numbers.
 
-## DBL patcher 0.9
+## Version 1.3
 
-The standalone bottle authoring tool has its own [source](tools/author_tool/README.md) and [Windows build instructions](tools/author_tool/BUILD-0.9.md). These include the recorded dependency versions, PyInstaller packaging definition, and source/archive hashes for review. The `patcher-v0.9` branch preserves this patcher source snapshot. This is separate from the game plugin version below.
+- Fixed incorrect glass rendering at **0% glass opacity**.
+- Improved the desktop appearance editor with Fusion UI, full-screen mouse movement, and 1% adjustment steps.
+- Bottles blend more naturally into fog and god rays, with smooth automatic atmospheric fading.
+- Includes inventory/inspection transparency, glass texture-binding, and overly bright reflection fixes.
+- Added **Modern Replacer - Nuka-Cola** glass-bottle support; cans are unchanged.
+- Reduced **Star Size Sunset Sarsaparilla** reflection strength to 0.25.
+- Fixed the **Duplicate tuning mesh** settings-loading error during upgrades, preserving saved settings.
+- Retains the 1.2 compatibility patches, 95% Nuka fill, and saved customization.
 
-## Version 1.1
-
-The 1.1 installer brings together desktop and VR builds, vanilla bottle replacers and additional drink patches. It includes material-based appearance overrides, carbonation and shaking bubbles, surface foam for carbonated drinks, and the revised wet film inside the glass.
-
-Rendering retains full-resolution native refraction, foreground depth guards, regional composition/copy-back and distance-based optimizations. Glass reflections remain independent of liquid distance fading. Both R16G16B16A16_FLOAT and R11G11B10_FLOAT scene-colour buffers are supported.
-
-External drink and material profiles are available again in 1.1. Desktop F7 tuning remains available. Public packages default to **Basic logging**; detailed diagnostics can be enabled through the INI below.
+The 1.3 desktop package is prepared locally. GitHub's latest published runtime release is currently [1.2](https://github.com/103Sakamoto/DynamicBottleLiquids/releases/tag/v1.2); updating this page does not publish a 1.3 installer or synchronize its source. VR retains the unchanged 1.2 runtime. The new Fusion editor and atmospheric fading are desktop-only.
 
 ## Requirements and installation
 
-| Installer choice | Supported game executables |
+| Runtime | Supported executable versions |
 |---|---|
-| Desktop Fallout 4 — one DLL for OG / NG / AE | 1.10.163, 1.10.984, 1.11.240 |
-| Fallout 4 VR — separate DLL | 1.2.72 |
+| Desktop Fallout 4 | 1.10.163, 1.10.984, 1.11.240 |
+| Fallout 4 VR | 1.2.72 |
 
-Use the matching F4SE or F4SEVR build, the Address Library/database for your executable, and the Microsoft Visual C++ x64 runtime.
+Use matching F4SE/F4SEVR, the Address Library for your executable, and the Microsoft Visual C++ x64 runtime. Select one runtime in the MO2/Vortex installer and only compatibility patches for mods you have installed. Original bottle mods remain required. Choose vanilla bottles if you do not use a Nuka-Cola replacer, and let the selected DBL assets win conflicts.
 
-Install through MO2 or Vortex. Choose one runtime, then select only patches for the original mods you have installed. Choose **Vanilla bottles** if you do not use a Nuka-Cola replacer. Let this package overwrite the corresponding bottle assets from the original mods. Replace older Dynamic Bottle Liquids core/patch packages rather than layering them together. Back up personal settings before upgrading: mod-manager Overwrite files may take precedence over the packaged configuration.
+Replace older DBL core/patch packages and disable superseded test overlays. Keep your **UserSettings** folder when updating. Existing overrides take priority over new factory defaults.
 
-The installer includes these optional patches; their original mods are required:
+Compatibility options include The Nuka Project, Nuka-Cola Classic, Neo-Classic Nuka Cola, Oppressor's Nuka-Cola Project, The Vim Project, Beer Bottles Retextured, Star Size Sunset Sarsaparilla, Atomic Shine, Vintage Nukas, Novelty-Nuka Redux, Wasteland Imports, and Modern Replacer - Nuka-Cola. Select only the options supplied by your installer version.
 
-- The Nuka Project
-- Nuka-Cola Classic — Nuka World DLC variant
-- F4NV - Neo Classic Nuka Cola
-- Oppressor's Nuka-Cola Project (4K) - Complete Edition (BOS Support)
-- The Vim Project
-- Beer Bottles Retextured
-- Star Size Sunset Sarsaparilla - A Soda Mod
-- Atomic Shine - A Nuka-Shine Mod
-- Vintage Nukas - Powerful New Sodas
+IAF bottle props are supported where supplied by the core or selected patch. IAF itself is not bundled and is not required for world bottles. Support for one bottle family does not imply support for every animation or replacer.
 
-**IAF (Immersive Animation Framework):** core animation-object meshes are included automatically. The Nuka Project and The Vim Project choices also include their matching IAF variants. IAF itself is not bundled and is not required for world bottles. This does not imply that every optional replacer or VR animation framework has a matching IAF patch.
+## Desktop appearance editor
+
+Pick up a supported bottle and press **Ctrl+F7**. The editor pauses gameplay while you adjust appearance. Save settings to a bottle or group, restore group inheritance, and manage custom groups. **Ctrl+F8** toggles the passive performance overlay; shortcuts can be customized. VR does not include this editor.
+
+Personal settings are stored in:
+
+`Data/F4SE/Plugins/DynamicBottleLiquids/UserSettings/`
+
+This folder contains appearance/group settings (`tuning.json`), shortcuts (`ui.json`), and logging preferences. Existing preferences migrate on first run without overwriting settings already saved there. Mod managers may redirect writes to their overwrite/output folder. Installers do not include personal settings.
+
+## How DBL uses Fusion UI
+
+The **1.3 desktop editor and performance overlay use [Fusion UI](https://github.com/Bryant-21/fusion-ui-fo4) and [Fusion Framework](https://github.com/Bryant-21/fusion-framework-fo4), created by [Bryant-21](https://github.com/Bryant-21) and contributors**. These are third-party software dependencies, not original DBL frameworks.
+
+DBL registers its appearance editor and passive overlay as Fusion UI clients. DBL supplies the bottle controls and settings; Fusion provides the shared UI/input infrastructure, including cursor and input ownership and the editor's pause behavior. Fusion UI builds on Dear ImGui.
+
+The prepared 1.3 desktop package includes `FusionUI.dll`, `FusionFramework.dll`, and the required UI resources. They are not used by the VR runtime. If another mod provides these shared components, avoid overwriting a newer compatible version with an older copy.
+
+Fusion UI and Fusion Framework are **GPL-3.0-or-later**, copyright 2026 Bryant-21. Their license texts and font/icon notices are retained in the distribution. The prepared 1.3 source archive includes the source snapshots, dependency provenance, and working-tree patch records used for the build. See [third-party notices](THIRD_PARTY.md) for exact revisions and notice locations. This describes DBL's packaged integration; upstream Fusion's current architecture may differ from the pinned revision.
 
 ## Logging and troubleshooting
 
-Edit `Data/F4SE/Plugins/DynamicBottleLiquids.ini`, then restart the game:
+**Basic** is the default logging mode. **Extensive** enables detailed diagnostic profiling and adds overhead. Change `[Logging] Mode=Basic` to `Mode=Extensive` in the logging INI and restart the game. A saved `UserSettings/DynamicBottleLiquids.ini` takes priority over the shipped `Data/F4SE/Plugins/DynamicBottleLiquids.ini`. Opening the overlay does not automatically enable profiling.
 
-```ini
-[Logging]
-Mode=Basic
-```
+When reporting a problem, include the full DBL log, game/F4SE versions, relevant rendering mods or upscalers, and screenshots. For a crash, include the complete crash log. The log is normally under `Documents/My Games/Fallout4/F4SE/DynamicBottleLiquids.log`; VR/custom setups can use a different save-folder name.
 
-- **Basic** is the public default. It records startup/runtime information, profile counts, bounded failure messages and periodic health counts without the performance panel or profiling queries.
-- **Extensive** enables detailed logs and the diagnostic panel, including GPU profiling sampled once every 16 bottle-active frames. Development packages default to this mode. Profiling adds overhead.
+ENB multi-bottle refraction remains a known limitation. Automated build/configuration tests do not certify every executable, headset, or mod combination. The 1.3 installer passed all 1,536 configuration selections; live final-package VR testing is not claimed.
 
-The INI supersedes the older JSON `diagnostics` switch. F4 is no longer used. In Extensive mode, F8 hides/shows the panel and F9 resets measurements; hiding the panel does not stop profiling.
+## DBL Patcher
 
-The log is normally at `Documents/My Games/Fallout4/F4SE/DynamicBottleLiquids.log`; the save-folder name can differ for VR or custom installations. Health counts describe draw operations, not unique bottles or frame time.
-
-When reporting a problem, include the full plugin log, game/F4SE versions, relevant rendering mods or upscaler, and screenshots. For a crash, also include the complete crash log.
-
-**Known limitations:** ENB can still lose liquid refraction with multiple bottles. A reported third-party D3D11 context-vtable crash is being investigated; 1.1 does not include a speculative fix for that report.
-
-**Validation:** desktop and VR 1.1 builds compile, eight local regression/GPU tests pass, and all 320 installer configurations pass the configuration-loader checks. These checks do not replace live testing of every runtime, headset or mod combination. The final 1.1 package still needs in-game verification.
+The standalone bottle-authoring tool imports supported NIFs, prepares cavity profiles, and exports compatibility patches. Download [DBL Patcher 1.0](https://github.com/103Sakamoto/DynamicBottleLiquids/releases/tag/patcher-v1.0), read its [guide](tools/author_tool/README.md), or follow the [build instructions](tools/author_tool/BUILD-1.0.md). Extract the full Windows ZIP and keep `_internal` beside the executable.
 
 ## Credits
 
-- **[brunocatani (Bruno Catani)](https://github.com/brunocatani)** — thank you for helping with VR development. The VR integration builds on the work in the **[DynamicBottleLiquidsVR `fallout4vr` branch](https://github.com/brunocatani/DynamicBottleLiquidsVR/tree/fallout4vr)**.
-- **[L0rns on Nexus Mods](https://forums.nexusmods.com/profile/86122018-l0rns/)** — thank you for testing and helping validate the mod.
-- Thanks to the original bottle/drink mod authors and the maintainers of the libraries used by this project. Their assets and dependencies retain their own licenses.
+- **Bryant-21 and Fusion contributors** — Fusion UI and Fusion Framework, used by the 1.3 desktop editor and overlay.
+- **[brunocatani (Bruno Catani)](https://github.com/brunocatani)** — VR development and the [DynamicBottleLiquidsVR fallout4vr branch](https://github.com/brunocatani/DynamicBottleLiquidsVR/tree/fallout4vr) on which the VR integration builds.
+- **[L0rns](https://forums.nexusmods.com/profile/86122018-l0rns/)** — testing and validation.
+- The F4SE/Address Library teams, CommonLib contributors, Dear ImGui authors, and maintainers of the other libraries listed in [THIRD_PARTY.md](THIRD_PARTY.md).
+- The original bottle, drink, and animation mod authors for their assets and integrations.
+- Valve's *Half-Life: Alyx* for inspiration.
+- ChatGPT / OpenAI Codex for AI-assisted development, research, debugging, testing, and documentation, guided and reviewed by the mod author.
 
 ## Source and license
 
-Project code is licensed under the included [GNU GPL v3 license](LICENSE). Game/mod assets in separately distributed install packages retain their original rights; this license does not relicense those assets.
+DBL project code uses the included [GNU GPL v3 license](LICENSE). Third-party software and game/mod assets retain their own licenses; DBL's license does not relicense those assets.
 
-This README describes the 1.1 package. The repository source and [build notes](BUILD.md) currently describe the earlier published source revision; the separate 1.1 source archive accompanies the prepared release and has not yet been synchronized here. See the existing [third-party notices](THIRD_PARTY.md) for that revision. The 1.1 source package additionally retains the VR contributor and dependency notices.
-
-
-## DBL Patcher 1.0
-
-The standalone patcher fixes saving desktop-picked colors. [Download 1.0](https://github.com/103Sakamoto/DynamicBottleLiquids/releases/tag/patcher-v1.0), see the [application guide](tools/author_tool/README.md), or [build from source](tools/author_tool/BUILD-1.0.md). Patcher versioning is separate from the runtime mod.
+The source currently on GitHub main and its [build notes](BUILD.md) describe an earlier runtime revision. The prepared `DynamicBottleLiquids-1.3-Source.zip` contains the corresponding desktop/VR sources, Fusion dependency snapshots, build records, and notices, but has not been published to this repository as part of this documentation update. Do not use the older main-branch source as a claim of source correspondence for 1.3.
