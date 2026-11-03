@@ -119,17 +119,35 @@ def infer_axis(target,selected):
     return ('-' if lower_gap>threshold and lower_gap-upper_gap>threshold else '+')+'XYZ'[index]
 
 def calculate(model, selected, *, target=None, axis=None, clearance=.16, trim=.005, center_offset=(0., 0.), asset_root=None, auto_trim=True, cancel=None):
-    from .core import fit_cavity, SectionError, points_world, axis_rotation
+    from .core import fit_cavity, SectionError, ClearanceError, points_world, axis_rotation
     preparation, target = plan(model, selected, target, asset_root)
     if axis is None:
         axis=infer_axis(target,selected)
     # Fit the whole bottle, not the arbitrary fill height of its original static liquid.
     requested_trim=trim
+    bottom_trim=trim
     height=float(np.ptp((points_world(target) @ axis_rotation(axis).T)[:,2]))
     while True:
         try:
-            fit = fit_cavity(target, target, axis, clearance, trim, center_offset,cancel=cancel)
+            fit = fit_cavity(target, target, axis, clearance, trim, center_offset,
+                             cancel=cancel, bottom_trim=max(trim,bottom_trim))
             break
+        except ClearanceError as error:
+            # A punt can collapse to the axis inside an otherwise closed bottle.
+            # Exclude only the low end (at most 5%); never shrink the inset,
+            # lower the minimum radius, trim a narrow neck, or change the mouth.
+            # fit_cavity checks all section topology before raising this error
+            # and repeats the complete fit and dense checks after every retry.
+            distance=error.highest_height/height
+            if not auto_trim or not 0 <= distance < .05 or max(trim,bottom_trim) >= .05:
+                raise
+            adjusted=max(bottom_trim+.005,(np.floor(distance/.005)+1)*.005)
+            # Stay just above a grid-aligned punt apex, not coplanar with it.
+            # If that margin exceeds the budget, require manual geometry work.
+            adjusted=round(float(adjusted),6)+1e-6
+            if adjusted > .05:
+                raise
+            bottom_trim=adjusted
         except SectionError as error:
             # Only omit irregular end regions, never repair a seam through the
             # body or conceal an off-center axis. The full fitter runs again.
@@ -139,7 +157,8 @@ def calculate(model, selected, *, target=None, axis=None, clearance=.16, trim=.0
             adjusted=max(trim+.005,(np.floor(distance/.005)+1)*.005)
             trim=min(.05,round(float(adjusted),6))
     fit['audit']['requested_end_trim_fraction']=requested_trim
-    fit['audit']['automatic_end_trim']=trim!=requested_trim
+    fit['audit']['automatic_end_trim']=trim!=requested_trim or bottom_trim!=requested_trim
+    fit['audit']['automatic_bottom_trim']=bottom_trim>max(trim,requested_trim)
     fit['preparation'] = preparation
     fit['audit']['scope'] = 'Full enclosing bottle, measured at nominal 0.16 thickness; original liquid only identifies the bottle.'
     fit['audit']['selected_liquid'] = selected['name']
