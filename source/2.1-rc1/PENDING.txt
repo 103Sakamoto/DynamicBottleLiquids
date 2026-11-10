@@ -1,0 +1,3 @@
+Permanent Cobalt SSR Fix draw-hook compatibility remains pending. Verified workaround: physical SSRFix.ini [Mirror] iReHook=0. No native SSR fix or diagnostic tracing included.
+Original public 2.0/DLSS crash report remains unresolved, awaiting isolation logs.
+No release tag or binary publication is part of this source update.

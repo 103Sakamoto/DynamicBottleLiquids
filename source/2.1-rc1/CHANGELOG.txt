@@ -1,0 +1,20 @@
+Dynamic Bottle Liquids 2.1 RC1 - changes since public 2.0
+
+- Replace supported cold-bottle ice shells with stationary condensation drops,
+  randomized in position and size; support shared vanilla cold forms and patches.
+- Remove separate Atomic Shine and supported Sunset frost shells.
+- Repair Supa Yum inventory material and 39 affected patched bottle materials,
+  including Novelty drinking-animation meshes.
+- Hide overlapping Vintage inner layers; retain labels and dynamic liquid.
+- Add optional Fallout 3 Style Whiskey patch; separate cork/collar and fix freeze.
+- Support Visible Favorites bottle names and prevent delayed liquid shutdown.
+- Defer preview-hook installation to avoid the F4R Upscaling startup conflict.
+- Retry failed inspection colour techniques for validated DBL bottles, fixing
+  missing X-key inspection liquid on audited OG/NG/AE runtime paths.
+- Swap Refreshing Beverage and Dirty Wastelander to full beer models in memory,
+  including Beer Bottles Retextured. No ESP; empty junk and other replacers preserved.
+- Exclude temporary SSR diagnostics, rollback packages, obsolete test labels and
+  unaccepted RenderDoc workaround. Preserve normal optional diagnostic logging.
+
+Pending, not claimed fixed: permanent SSR Fix compatibility; original 2.0/DLSS
+crash report. See README for the verified SSR workaround and RC test checklist.

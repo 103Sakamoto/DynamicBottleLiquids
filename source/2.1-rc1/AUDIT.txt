@@ -1,0 +1,27 @@
+2.1 RC1 self-audit and cleanup
+
+Inputs: immutable public 2.0 FOMOD plus accepted next-release assets and current
+production desktop source. Accepted DLLs and earlier public archives preserved.
+Source comparison permits only version metadata and historical log-label changes.
+SSR Diagnostic 1/2 sources and DLLs remain outside the candidate. No re-hook code,
+SSRFix INI, mixed-drink ESP, Novelty rollback or RenderDoc experiment included.
+Historical experimental build artifacts are retained outside release inputs.
+
+Accepted assets: 31 material-repair hashes checked directly; the eight Vintage
+meshes checked against their later accepted inner-layer hashes. Supa Yum checked
+against its accepted ZIP. Whiskey meshes/profiles/groups/appearance match Test 4.
+The accepted five-shader condensation overlay is included. Production source
+contains shared-form cold identity, shell suppression, VF recognition, deferred
+F4R preview hook, guarded inspection retry and ESP-free mixed-drink initialization.
+
+Validation: fresh build of all common modules and four settings UI variants;
+F4SE version exports verified as 2.1.0.0. Inspection policy/adapter and VF native
+checks, mixed-drink mapping tests, OG/NG/AE address audits, FOMOD schema/encoding,
+accepted asset hashes, no case-insensitive collisions, player-settings exclusion,
+Basic logging default and archive hash checks. Native catalog configuration count
+is recorded in VALIDATION.json. Compiler reports existing nodiscard warnings in
+Tuning.cpp; no build failures. No claim of in-game RC validation.
+
+Pending: native SSR compatibility and original 2.0/DLSS crash report. Their
+investigations remain open. User verified SSR iReHook=0 workaround separately;
+installer does not alter it. Publication is held for user testing of RC1.

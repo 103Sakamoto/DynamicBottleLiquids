@@ -1,0 +1,18 @@
+2.1 RC1 corresponding source snapshot
+
+Desktop source is in desktop/native/src and desktop/shaders. This snapshot targets
+OG 1.10.163, NG 1.10.984 and AE 1.11.240 with four settings UI variants.
+The repository-root native/, shaders/, xmake.lua and bootstrap.ps1 remain historical;
+do not use their earlier build recipe for this snapshot.
+
+build-provenance contains the exact MSVC build recipe and response files used for
+RC1. These are maintainer-workspace paths, not a portable bootstrap: adapt include,
+library and source/output paths to your environment. Dependencies include the
+multi-runtime CommonLib/Fusion fork, MinHook, spdlog, nlohmann JSON, UI adapter headers,
+and the Fusion UI library for that variant. See existing THIRD_PARTY.md and licenses.
+No dependencies, compiled DLLs/shaders, game meshes or installer ZIP are added here.
+
+package.py is release assembly provenance, requiring the accepted asset manifests
+and historical release inputs from the maintainer workspace; those mod assets are
+not redistributed in this source checkout. The embedded thumbnail is from the
+original Whiskey mod's primary Nexus image. RC testing remains pending.

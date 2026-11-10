@@ -1,0 +1,45 @@
+{
+  "version": "2.1 RC1",
+  "published": false,
+  "installed": false,
+  "runtimes": [
+    "1.10.163",
+    "1.10.984",
+    "1.11.240"
+  ],
+  "ui_variants": [
+    "fusion",
+    "mf",
+    "dmui",
+    "none"
+  ],
+  "vr_included": false,
+  "accepted_fixes": [
+    "ice condensation and shell removal",
+    "Supa Yum and 39 material repairs",
+    "Vintage inner layer",
+    "Fallout 3 Style Whiskey cork/collar",
+    "Visible Favorites",
+    "F4R preview hook order",
+    "general inspection fallback",
+    "ESP-free mixed drinks"
+  ],
+  "pending": [
+    "permanent SSR Fix compatibility",
+    "original public 2.0/DLSS report",
+    "user RC validation across runtime/UI combinations"
+  ],
+  "logging": "Basic",
+  "diagnostic_payload": false,
+  "source_changes": "version metadata and historical log labels only",
+  "files": 445,
+  "base_sha256": "46a622bde36e56026a9379ae31063d9468410bdf3f6582367ce7a346fb427041",
+  "dll_sha256": {
+    "fusion": "bc047b415ec6016588dd625bf2cb584ba71609e7db6f7dc4a04551eb8e1295b7",
+    "mf": "34fae95f06a01e21c1beb38748e4c3d52c017238ed8cf8f2fa53d280e80b99db",
+    "dmui": "6d7b86c6b405d922ed7772090bc2e662503cc87057e469a250afae7136a533b7",
+    "none": "25d62f594d2d6bd716dabbfecc3746c4587cecb7a669098430ae09f778aed9ec"
+  },
+  "native_startup_configurations_passed": 768,
+  "offline_tests": "inspection helper/adapter, Visible Favorites, OG/NG/AE address audit, mixed-drink model selection, FOMOD schema and encoding"
+}

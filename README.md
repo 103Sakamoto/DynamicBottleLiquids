@@ -4,6 +4,10 @@ Moving liquid, sloshing, carbonation and shaking bubbles, surface foam, wet inne
 
 **[Download from Nexus Mods](https://www.nexusmods.com/fallout4/mods/110181)** or see the [GitHub releases](https://github.com/103Sakamoto/DynamicBottleLiquids/releases). The runtime mod and standalone DBL Patcher have separate version numbers.
 
+## 2.1 release candidate source
+
+The [2.1 RC1 desktop source snapshot](source/2.1-rc1) contains the accepted post-2.0 fixes for OG/NG/AE. See its [changelog](source/2.1-rc1/CHANGELOG.txt), [build provenance and limitations](source/2.1-rc1/BUILD.txt), and [pending issues](source/2.1-rc1/PENDING.txt). RC1 passed offline checks including 768 patch catalog configurations; user testing is required before publication. Permanent SSR compatibility and the original 2.0/DLSS crash report remain pending. This source update does not publish a release or change the standalone DBL Patcher.
+
 ## Version 1.3
 
 - Fixed incorrect glass rendering at **0% glass opacity**.
