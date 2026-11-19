@@ -2,13 +2,11 @@
 
 Moving liquid, sloshing, carbonation and shaking bubbles, surface foam, wet inner glass, and scene refraction for supported Fallout 4 bottles.
 
-**[Download from Nexus Mods](https://www.nexusmods.com/fallout4/mods/110181)** or see the [GitHub releases](https://github.com/103Sakamoto/DynamicBottleLiquids/releases). The runtime mod and standalone DBL Patcher have separate version numbers.
+**[Download the mod from Nexus Mods](https://www.nexusmods.com/fallout4/mods/110181?tab=files)**. The runtime mod and standalone DBL Patcher have separate version numbers.
 
-## Version 2.2 for Fallout 4 desktop
+## Version 2.2 in development
 
-Install the full FOMOD and choose your settings UI. This release adds bottle-relative waves, evolving reflection ripples, Ice Cold condensation, compact draw preparation, and compatibility with Realistic Reflections and Cobalt SSR Fix. Profiling follows your saved settings.
-
-[Download version 2.2](https://github.com/103Sakamoto/DynamicBottleLiquids/releases/tag/v2.2) · [Source and build notes](source/2.2)
+Compatibility patches are pending. [Development source and build notes](source/2.2)
 
 ## Version 1.3
 
@@ -21,7 +19,7 @@ Install the full FOMOD and choose your settings UI. This release adds bottle-rel
 - Fixed the **Duplicate tuning mesh** settings-loading error during upgrades, preserving saved settings.
 - Retains the 1.2 compatibility patches, 95% Nuka fill, and saved customization.
 
-**[Download version 1.3](https://github.com/103Sakamoto/DynamicBottleLiquids/releases/tag/v1.3)**. The release includes the full installer, corresponding source, Fusion notices, and checksums. VR retains the unchanged 1.2 runtime. The new Fusion editor and atmospheric fading are desktop-only.
+[Mod downloads on Nexus Mods](https://www.nexusmods.com/fallout4/mods/110181?tab=files). VR retains the unchanged 1.2 runtime. The new Fusion editor and atmospheric fading are desktop-only.
 
 ## Requirements and installation
 
@@ -84,4 +82,4 @@ The standalone bottle-authoring tool imports supported NIFs, prepares cavity pro
 
 DBL project code uses the included [GNU GPL v3 license](LICENSE). Third-party software and game/mod assets retain their own licenses; DBL's license does not relicense those assets.
 
-[Download the corresponding 2.2 source](https://github.com/103Sakamoto/DynamicBottleLiquids/releases/download/v2.2/DynamicBottleLiquids-2.2-Source.zip) for the desktop implementation, UI dependencies and build notes. The repository-root build files describe an earlier release.
+[Browse the 2.2 development source and build notes](source/2.2). The repository-root build files describe an earlier release.
