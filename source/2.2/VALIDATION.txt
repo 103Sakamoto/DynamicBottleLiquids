@@ -1,0 +1,5 @@
+2.2 release verification
+All four packaged DLLs export F4SE version 2.2.0.0 and include the 2.2 initialization and successful-load messages. The installer default is Basic logging.
+768 of 768 installer catalog combinations passed. All 445 archive entries passed integrity checks, and the installer passed FOMOD schema and Vortex encoding validation.
+Native tests passed for the 113-profile startup catalog, bottle-relative waves, reflected-view isolation, three-frame safety latch, glass response, shield restoration, bubble budgets, and static inspection reflections.
+The six rebuilt wave shaders matched the approved binary hashes. Prior in-game runs verified SSR routing on OG and NG. A full play-through of the final binaries across every runtime and settings UI remains unverified.

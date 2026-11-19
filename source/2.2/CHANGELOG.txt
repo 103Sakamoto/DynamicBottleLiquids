@@ -1,0 +1,8 @@
+Dynamic Bottle Liquids 2.2
+- Ice Cold drinks use the approved condensation preset with varied droplet sizes.
+- Bottle-relative surface waves follow slosh, and evolving ripples affect reflections.
+- Compact draw preparation reduces repeated work when rendering bottles.
+- Reflected views are handled separately for Realistic Reflections mirrors. The native optics safety check remains active.
+- Draw routing supports repeated Cobalt SSR Fix re-hooks. NG testing passed with SSR Fix 1.10.1 and iReHook=-1.
+- Profiling respects the saved logging mode. Basic is the default. Extensive GPU timing samples every 16 active frames by default, with every-frame timing available in the settings UI.
+- Includes the desktop bottle assets and compatibility patches for supported replacers.

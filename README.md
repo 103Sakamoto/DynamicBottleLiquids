@@ -4,9 +4,11 @@ Moving liquid, sloshing, carbonation and shaking bubbles, surface foam, wet inne
 
 **[Download from Nexus Mods](https://www.nexusmods.com/fallout4/mods/110181)** or see the [GitHub releases](https://github.com/103Sakamoto/DynamicBottleLiquids/releases). The runtime mod and standalone DBL Patcher have separate version numbers.
 
-## 2.1 release candidate source
+## Version 2.2 for Fallout 4 desktop
 
-The [2.1 RC1 desktop source snapshot](source/2.1-rc1) contains the accepted post-2.0 fixes for OG/NG/AE. See its [changelog](source/2.1-rc1/CHANGELOG.txt), [build provenance and limitations](source/2.1-rc1/BUILD.txt), and [pending issues](source/2.1-rc1/PENDING.txt). RC1 passed offline checks including 768 patch catalog configurations; user testing is required before publication. Permanent SSR compatibility and the original 2.0/DLSS crash report remain pending. This source update does not publish a release or change the standalone DBL Patcher.
+Install the full FOMOD and choose your settings UI. This release adds bottle-relative waves, evolving reflection ripples, Ice Cold condensation, compact draw preparation, and compatibility with Realistic Reflections and Cobalt SSR Fix. Profiling follows your saved settings.
+
+[Download version 2.2](https://github.com/103Sakamoto/DynamicBottleLiquids/releases/tag/v2.2) · [Source and build notes](source/2.2)
 
 ## Version 1.3
 
@@ -26,7 +28,7 @@ The [2.1 RC1 desktop source snapshot](source/2.1-rc1) contains the accepted post
 | Runtime | Supported executable versions |
 |---|---|
 | Desktop Fallout 4 | 1.10.163, 1.10.984, 1.11.240 |
-| Fallout 4 VR | 1.2.72 |
+| Fallout 4 VR (previous VR release) | 1.2.72 |
 
 Use matching F4SE/F4SEVR, the Address Library for your executable, and the Microsoft Visual C++ x64 runtime. Select one runtime in the MO2/Vortex installer and only compatibility patches for mods you have installed. Original bottle mods remain required. Choose vanilla bottles if you do not use a Nuka-Cola replacer, and let the selected DBL assets win conflicts.
 
@@ -82,4 +84,4 @@ The standalone bottle-authoring tool imports supported NIFs, prepares cavity pro
 
 DBL project code uses the included [GNU GPL v3 license](LICENSE). Third-party software and game/mod assets retain their own licenses; DBL's license does not relicense those assets.
 
-**[Download the corresponding 1.3 source](https://github.com/103Sakamoto/DynamicBottleLiquids/releases/download/v1.3/DynamicBottleLiquids-1.3-Source.zip)** for the desktop/VR sources, Fusion dependency snapshots, build instructions, provenance, and notices. The source currently on GitHub main and its [build notes](BUILD.md) describe an earlier runtime revision. GitHub's automatically generated source ZIP/tarball follows the repository tag; use the explicitly attached `DynamicBottleLiquids-1.3-Source.zip` to reproduce the 1.3 build. See the release's `Fusion-NOTICES.txt` and `SHA256SUMS.txt` for notices and checksums.
+[Download the corresponding 2.2 source](https://github.com/103Sakamoto/DynamicBottleLiquids/releases/download/v2.2/DynamicBottleLiquids-2.2-Source.zip) for the desktop implementation, UI dependencies and build notes. The repository-root build files describe an earlier release.

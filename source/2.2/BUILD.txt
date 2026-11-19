@@ -1,0 +1,3 @@
+The 2.2 plugin implementation is in source/desktop/native/src. Shader source is in source/desktop/shaders.
+The MSVC and FXC scripts and response files record the build inputs. Adapt the local paths to your dependency checkout and libraries. The scripts use the multi-runtime CommonLib/Fusion fork, MinHook, spdlog, nlohmann JSON, settings UI adapters and the Windows SDK. Fusion also links the DBLFusionUI import library.
+Installer assembly uses the historical full 2.1 RC1 FOMOD and the accepted shader hashes from the maintainer workspace. The native startup test expects the maintainer test-settings fixture. The release FOMOD includes the runtime assets, UI dependencies and their notices.

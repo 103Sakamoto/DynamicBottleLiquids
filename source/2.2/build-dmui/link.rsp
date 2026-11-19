@@ -1,0 +1,7 @@
+"C:\DBL-workspace\build\windows\x64\releasedbg\commonlib-shared.lib"
+"C:\DBL-workspace\build\windows\x64\releasedbg\commonlibf4.lib"
+"C:\xmake-cache\packages\s\spdlog\v1.16.0\2543eb07d7994c0a92250d3ddabd1ebf\lib\spdlog.lib"
+"C:\xmake-cache\packages\m\minhook\v1.3.4\4ca9207ef9704dff8fb0839861841bd5\lib\minhook.lib"
+d3d11.lib d3dcompiler.lib dxgi.lib user32.lib gdi32.lib ole32.lib shell32.lib advapi32.lib version.lib bcrypt.lib dbghelp.lib ws2_32.lib
+
+
