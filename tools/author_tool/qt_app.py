@@ -33,7 +33,7 @@ class ExportReview(QDialog):
         lines=[]
         for key,source in project['sources'].items():
             audit=source['audit'];prep=source.get('preparation',{})
-            lines.append(f"{key}: {prep.get('target_name','glass')} · applied end trim {audit['end_trim_fraction']*100:g}% · hides blocks {prep.get('hidden_blocks',[])}")
+            lines.append(f"{key}: {prep.get('target_name','glass')} · applied bottom/top trim {audit.get('bottom_trim_fraction',audit['end_trim_fraction'])*100:g}% / {audit['end_trim_fraction']*100:g}% · hides blocks {prep.get('hidden_blocks',[])}")
         with zipfile.ZipFile(path) as archive:lines+=['','Files to write:']+archive.namelist()
         text=QPlainTextEdit();text.setReadOnly(True);text.setPlainText('\n'.join(lines));layout.addWidget(text,1)
         layout.addWidget(help_note('Export writes a patch ZIP; Save project keeps your editable drafts and groups.'))
@@ -235,7 +235,7 @@ class AuthorWindow(QMainWindow):
                 if self.result:
                     audit=self.result['audit'];p=self.result['preparation']
                     self.calculation_status.setText('Ready to export')
-                    self.calculation_status.setToolTip(f"{len(self.result['rings'])} rings. Requested trim {settings['trim']*100:g}%; applied {audit['end_trim_fraction']*100:g}%. Automatically hidden shapes: {p['hidden_blocks']}.")
+                    self.calculation_status.setToolTip(f"{len(self.result['rings'])} rings. Requested trim {settings['trim']*100:g}%; applied bottom/top {audit.get('bottom_trim_fraction',audit['end_trim_fraction'])*100:g}% / {audit['end_trim_fraction']*100:g}%. Automatically hidden shapes: {p['hidden_blocks']}.")
                 else:self.calculation_status.setText('Needs recalculation' if entry['result'] else 'Choose a shape, then prepare the bottle.')
             else:
                 self.model=None;self.result=None;self.shapes.clear();self.target.clear();self.bottle_title.setText('Import a bottle');self.detected.setText('');self.calculation_status.setText('No bottle selected.');self.group.clear();self.group.addItem('Ungrouped',None)

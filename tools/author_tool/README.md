@@ -141,6 +141,13 @@ third-party textures. It does not install anything in a game or mod manager.
   Handles, badly off-center or non-round interiors, open seams, and overlapping
   surfaces can be rejected. Adjusting the axis/center/end trim may help, but the
   algorithm does not automatically repair an unsuitable mesh.
+- With automatic end trimming enabled, insufficient radius confined to the
+  bottom 5% can raise the liquid floor above a small punt (raised bottle base).
+  This leaves the upper trim and wall inset unchanged, keeps every fitted radius
+  above 0.05, and reruns the topology and dense clearance checks. The audit and
+  export review report bottom and top trim separately. A deep punt, narrow neck,
+  narrow body or open/overlapping body section still requires manual geometry
+  work; this does not repair or weld the source mesh.
 - The checks use exact in-plane segment distances at finite height samples.
   They are not a proof for every point of an arbitrary mesh. Test upright,
   sideways, inverted and shaking, including the original labels and attachments.

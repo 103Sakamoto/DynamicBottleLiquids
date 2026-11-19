@@ -181,6 +181,15 @@ class SectionError(ValueError):
         self.height=float(height)
 
 
+class ClearanceError(ValueError):
+    """Measured sections are too narrow, with their full height range retained."""
+    def __init__(self, heights):
+        self.lowest_height = float(np.min(heights))
+        self.highest_height = float(np.max(heights))
+        super().__init__("Clearance leaves too little room for liquid; review shape, axis and clearance. "
+                         f"Insufficient radius at heights {self.lowest_height:.5g}–{self.highest_height:.5g}.")
+
+
 def section_radius(mesh, height):
     """Trimesh slices the triangles; exact segment distances bound a circular cavity."""
     lines = trimesh.intersections.mesh_plane(mesh, [0, 0, 1], [0, 0, float(height)])
@@ -223,11 +232,14 @@ def section_radius(mesh, height):
     return float(nearest.min())
 
 
-def fit_cavity(shape, target, axis="+Z", clearance=.05, trim=.005, center_offset=(0., 0.), cancel=None):
+def fit_cavity(shape, target, axis="+Z", clearance=.05, trim=.005, center_offset=(0., 0.), cancel=None, *, bottom_trim=None):
     if not math.isfinite(clearance) or clearance < 0:
         raise ValueError("Wall clearance must be finite and non-negative.")
     if not math.isfinite(trim) or not 0 < trim < .25:
         raise ValueError("End trim must be greater than 0 and less than 0.25 of the shape height.")
+    bottom_trim = trim if bottom_trim is None else bottom_trim
+    if not math.isfinite(bottom_trim) or not trim <= bottom_trim < .25:
+        raise ValueError("Bottom trim must be at least the end trim and less than 0.25 of the shape height.")
     if len(center_offset) != 2 or not all(math.isfinite(x) for x in center_offset):
         raise ValueError("Center offsets must be two finite numbers.")
     rotation = axis_rotation(axis)
@@ -239,7 +251,7 @@ def fit_cavity(shape, target, axis="+Z", clearance=.05, trim=.005, center_offset
     height = float(np.ptp(points[:, 2]))
     if height <= 1e-5:
         raise ValueError("Selected shape is flat; choose the liquid volume or bottle wall, not only the liquid top.")
-    low, high = height * trim, height * (1 - trim)
+    low, high = height * bottom_trim, height * (1 - trim)
     faces = np.asarray(shape["indices"], dtype=int).reshape(-1, 3)
     mesh = trimesh.Trimesh(vertices=points, faces=faces, process=False)
     # Probe both sides of every topology change as well as a regular grid.
@@ -255,7 +267,7 @@ def fit_cavity(shape, target, axis="+Z", clearance=.05, trim=.005, center_offset
         return section_radius(mesh,z)-clearance
     limits = np.array([radius(z) for z in levels])
     if limits.min() <= .05:
-        raise ValueError("Clearance leaves too little room for liquid; review shape, axis and clearance.")
+        raise ClearanceError(levels[limits <= .05])
     selected = [0, len(levels) - 1]
     for _ in range(14):
         prediction = np.interp(levels, levels[selected], limits[selected])
@@ -271,6 +283,8 @@ def fit_cavity(shape, target, axis="+Z", clearance=.05, trim=.005, center_offset
     ring_r -= inset
     checks = np.unique(np.r_[levels, np.linspace(low + eps, high - eps, 513)])
     bounds = np.array([radius(z) for z in checks])
+    if bounds.min() <= .05:
+        raise ClearanceError(checks[bounds <= .05])
     correction = max(0., float((np.interp(checks, ring_z, ring_r) - bounds).max())) + eps
     ring_r -= correction
     if ring_r.min() <= .05:
@@ -285,6 +299,7 @@ def fit_cavity(shape, target, axis="+Z", clearance=.05, trim=.005, center_offset
         raise ValueError("Target transform has unsupported shear/nonuniform scale.")
     return {"matrix": matrix.reshape(-1).tolist(), "rings": np.column_stack((ring_z, ring_r)).tolist(),
             "audit": {"axis": axis, "clearance": clearance, "end_trim_fraction": trim,
+                      "bottom_trim_fraction": bottom_trim,
                       "center_offset": list(center_offset), "checked_sections": len(checks),
                       "max_radius_loss_fraction": loss, "minimum_measured_clearance": float(
                           (bounds + clearance - np.interp(checks, ring_z, ring_r)).min()),
